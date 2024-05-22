@@ -1,0 +1,104 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "APIContagem | v1",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/contador": {
+      "get": {
+        "tags": [
+          "APIContagem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "valorAtual": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "local": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "kernel": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "framework": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "mensagem": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "x-aspnetcore-id": "5e5a20a5-6e0f-4604-a4fd-56191754c5f4"
+      }
+    },
+    "/contador-decrementar": {
+      "get": {
+        "tags": [
+          "APIContagem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "valorAtual": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "local": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "kernel": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "framework": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "mensagem": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "x-aspnetcore-id": "0e1c3629-65b5-4338-aa99-fc35d9f8c450"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "APIContagem"
+    }
+  ]
+}
