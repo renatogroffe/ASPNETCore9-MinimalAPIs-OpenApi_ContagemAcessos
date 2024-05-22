@@ -8,12 +8,15 @@ builder.Services.AddSingleton<Contador>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
+builder.Services.AddCors();
 
 var app = builder.Build();
 
 app.MapOpenApi();
 
 app.UseHttpsRedirection();
+
+app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.MapGet("/contador",
     Results<Ok<ResultadoContador>, InternalServerError<string>> (Contador contador) =>
@@ -44,8 +47,7 @@ app.MapGet("/contador",
     });
 }).Produces<ResultadoContador>().Produces(StatusCodes.Status500InternalServerError).WithOpenApi();
 
-app.MapGet("/contador-decrementar",
-    Results<Ok<ResultadoContador>, InternalServerError<string>> (Contador contador) =>
+app.MapGet("/contador-decrementar", (Contador contador) =>
     {
         int valorAtualContador;
         lock (contador)
@@ -63,6 +65,6 @@ app.MapGet("/contador-decrementar",
             Framework = contador.Framework,
             Mensagem = $"{app.Configuration["Saudacao"]} (Decremento)"
         });
-    }).Produces<ResultadoContador>().Produces(StatusCodes.Status500InternalServerError).WithOpenApi();
+    }).Produces<ResultadoContador>().WithOpenApi();
 
 app.Run();
